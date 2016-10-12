@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.sql.Date;
-
 public class JUnitTest {
     @Test
     public void isSaveAndLoad(){
