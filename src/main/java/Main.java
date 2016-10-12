@@ -12,7 +12,7 @@ import java.sql.Date;
 public class Main {
 
     public static void main(String[] args) {
-        //ApplicationContext ctx =new ClassPathXmlApplicationContext("classpath:application-context.xml");
-        //EntityDao<Mark> dao = ctx.getBean(MarkDaoImpl.class);
+        ApplicationContext ctx =new ClassPathXmlApplicationContext("classpath:application-context.xml");
+        EntityDao<Mark> dao = ctx.getBean(MarkDaoImpl.class);
     }
 }
