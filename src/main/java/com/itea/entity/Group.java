@@ -1,6 +1,6 @@
 package com.itea.entity;
-import javax.persistence.*;
 
+import javax.persistence.*;
 
 @Entity
 @Table(name = "SGROUP")
@@ -8,11 +8,13 @@ public class Group {
     @Id
     @Column(name = "GROUP_ID")
     private long Number;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "TEACHER_ID", nullable = true) //false
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "TEACHER_ID", nullable = false) //false
     private Teacher curator;
 
-    public Group() {}
+    public Group() {
+    }
+
     public Group(long number, Teacher curator) {
         Number = number;
         this.curator = curator;
@@ -25,7 +27,7 @@ public class Group {
                 '}';
     }
 
-    public long getNumber() {
+    private long getNumber() {
         return Number;
     }
 
@@ -33,7 +35,7 @@ public class Group {
         Number = number;
     }
 
-    public Teacher getCurator() {
+    private Teacher getCurator() {
         return curator;
     }
 

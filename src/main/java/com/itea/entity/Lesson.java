@@ -22,10 +22,10 @@ public class Lesson {
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 
-    @JoinColumn(name = "GROUP_ID", nullable =true)//false
+    @JoinColumn(name = "GROUP_ID", nullable =false)//false
     private Group sgroup;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "TEACHER_ID", nullable = true)//false
+    @JoinColumn(name = "TEACHER_ID", nullable = false)//false
     private Teacher teacher;
 
     @Override

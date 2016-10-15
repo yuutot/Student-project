@@ -20,10 +20,10 @@ public class Mark {
     }
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "LESSON_ID", nullable = true)//false
+    @JoinColumn(name = "LESSON_ID", nullable = false)//false
     private Lesson lesson;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "TEACHER_ID", nullable = true)//false
+    @JoinColumn(name = "TEACHER_ID", nullable = false)//false
     private Teacher teacher;
 
     public Student getStudent() {
@@ -35,9 +35,10 @@ public class Mark {
     }
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "STUDENT_ID", nullable = true)//false
+    @JoinColumn(name = "STUDENT_ID", nullable = false)//false
     private Student student;
     private Integer mark;
+    @Column(name ="Mark_Date")
     private Integer date;
 
     @Override

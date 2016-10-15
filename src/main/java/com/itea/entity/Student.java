@@ -23,10 +23,11 @@ public class Student {
     private String Name;
     private String Surname;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "GROUP_ID", nullable = true)//false
+    @JoinColumn(name = "GROUP_ID", nullable = false)//false
     private Group sgroup;
     private Integer tickets;
     private String email;
+    @Column(name = "PHONE")
     private Integer number;
 
     @Override
