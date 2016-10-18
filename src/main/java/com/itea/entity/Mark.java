@@ -10,15 +10,6 @@ public class Mark {
     @Column(name = "MARK_ID")
     private long id;
 
-    public Mark(){}
-    public Mark(Lesson lesson, Teacher teacher, Student student, Integer mark, Integer date) {
-        this.lesson = lesson;
-        this.teacher = teacher;
-        this.student = student;
-        this.mark = mark;
-        this.date = date;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "LESSON_ID", nullable = false)//false
     private Lesson lesson;

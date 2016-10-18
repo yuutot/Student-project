@@ -7,23 +7,14 @@ public class Lesson {
     @Id
     @GeneratedValue
     @Column(name = "LESSON_ID")
-    private Long id;
+    private long id;
     private String title;
     private String room;
-
-    public Lesson() {
-    }
-    public Lesson(String title, String room, Group sgroup, Teacher teacher) {
-        this.title = title;
-        this.room = room;
-        this.sgroup = sgroup;
-        this.teacher = teacher;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 
     @JoinColumn(name = "GROUP_ID", nullable =false)//false
-    private Group sgroup;
+    private Group group;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "TEACHER_ID", nullable = false)//false
     private Teacher teacher;
@@ -34,16 +25,16 @@ public class Lesson {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", room='" + room + '\'' +
-                ", group=" + sgroup +
+                ", group=" + group +
                 ", teacher=" + teacher +
                 '}';
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -64,11 +55,11 @@ public class Lesson {
     }
 
     public Group getGroup() {
-        return sgroup;
+        return group;
     }
 
     public void setGroup(Group group) {
-        this.sgroup = group;
+        this.group = group;
     }
 
     public Teacher getTeacher() {
@@ -79,34 +70,26 @@ public class Lesson {
         this.teacher = teacher;
     }
 
-    public Group getSgroup() {
-        return sgroup;
-    }
-
-    public void setSgroup(Group sgroup) {
-        this.sgroup = sgroup;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
 
         Lesson lesson = (Lesson) o;
 
-        if (id != null ? !id.equals(lesson.getId()) : lesson.id != null) return false;
+        if (id != lesson.getId()) return false;
         if (title != null ? !title.equals(lesson.getTitle()) : lesson.title != null) return false;
         if (room != null ? !room.equals(lesson.getRoom()) : lesson.room != null) return false;
-        if (sgroup != null ? !sgroup.equals(lesson.getGroup()) : lesson.sgroup != null) return false;
+        if (group != null ? !group.equals(lesson.getGroup()) : lesson.group != null) return false;
         return teacher != null ? teacher.equals(lesson.getTeacher()) : lesson.teacher == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (room != null ? room.hashCode() : 0);
-        result = 31 * result + (sgroup != null ? sgroup.hashCode() : 0);
+        result = 31 * result + (group != null ? group.hashCode() : 0);
         result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
         return result;
     }

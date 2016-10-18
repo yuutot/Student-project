@@ -12,14 +12,6 @@ public class Group {
     @JoinColumn(name = "TEACHER_ID", nullable = false) //false
     private Teacher curator;
 
-    public Group() {
-    }
-
-    public Group(long number, Teacher curator) {
-        Number = number;
-        this.curator = curator;
-    }
-
     public String toString() {
         return "Group{" +
                 "Number=" + Number +
@@ -27,7 +19,7 @@ public class Group {
                 '}';
     }
 
-    private long getNumber() {
+    public long getNumber() {
         return Number;
     }
 
@@ -35,7 +27,7 @@ public class Group {
         Number = number;
     }
 
-    private Teacher getCurator() {
+    public Teacher getCurator() {
         return curator;
     }
 

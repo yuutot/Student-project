@@ -21,15 +21,41 @@ public class JUnitTest {
     private EntityDao<Mark> dao;
     @Test
     public void isSaveAndLoad(){
-        Teacher teacher = new Teacher("Maria","Ivanova","33568","mail.ua");
-        Group group = new Group(2131, teacher);
-        Lesson lesson = new Lesson("Algebra", "6.110в",group,teacher);
-        Student student = new Student("Ivan", "Ivanov", group,13221,"ex.ua",41521);
-        Mark mark = new Mark(lesson,teacher,student, 5, 123);
+
+        Teacher teacher = new Teacher();
+        teacher.setName("Maria");
+        teacher.setSurname("Ivanova");
+        teacher.setPhone("12312");
+        teacher.setEmail("mail.ua");
+
+        Group group = new Group();
+        group.setNumber(new Random().nextInt());
+        group.setCurator(teacher);
+
+        Lesson lesson = new Lesson();
+        lesson.setGroup(group);
+        lesson.setRoom("6.104");
+        lesson.setTeacher(teacher);
+        lesson.setTitle("Algebra");
+
+        Student student = new Student();
+        student.setName("Ivan");
+        student.setSurname("Ivan");
+        student.setGroup(group);
+        student.setNumber(123123);
+        student.setEmail("ex.ua");
+        student.setTickets(62312);
+
+        Mark mark = new Mark();
+        mark.setTeacher(teacher);
+        mark.setDate(123);
+        mark.setLesson(lesson);
+        mark.setMark(5);
+        mark.setStudent(student);
+
         dao.insert(mark);
         Mark m = dao.find(mark.getId());
-        System.out.println(m);
-        Assert.assertEquals(mark,m);
         Assert.assertEquals(m,mark);
+        Assert.assertEquals(mark,m);
     }
 }

@@ -11,12 +11,17 @@
     http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <context:component-scan base-package=" com.itea.dao"/>
+    <tx:annotation-driven transaction-manager="txManager" />
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:h2.properties"/>
+    </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-        <property name="url" value="jdbc:oracle:thin:@//localhost:1521/XE" />
-        <property name="username" value="yuuto" />
-        <property name="password" value="111" />
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}" />
+        <property name="username" value="${user}" />
+        <property name="password" value="${password}" />
     </bean>
 
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
@@ -28,19 +33,18 @@
             <props>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2dll.auto">create</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.dialect">${dialect}</prop>
                 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
             </props>
         </property>
     </bean>
-    <tx:annotation-driven transaction-manager="txManager" />
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="showSql" value="true"/>
         <property name="generateDdl" value="true"/>
-        <property name="databasePlatform" value="org.hibernate.dialect.Oracle10gDialect"/>
-        <property name="database" value="ORACLE"/>
+        <property name="databasePlatform" value="${dialect}"/>
+        <property name="database" value="${database}"/>
     </bean>
 </beans>

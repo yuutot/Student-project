@@ -5,21 +5,10 @@ import javax.persistence.*;
 @Entity
 public class Student {
 
-    public Student() {
-    }
-    public Student(String name, String surname, Group sgroup, Integer tickets, String email, Integer number) {
-        Name = name;
-        Surname = surname;
-        this.sgroup = sgroup;
-        this.tickets = tickets;
-        this.email = email;
-        this.number = number;
-    }
-
     @Id
     @GeneratedValue
     @Column(name = "STUDENT_ID")
-    private Long id;
+    private long id;
     private String Name;
     private String Surname;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
@@ -75,11 +64,11 @@ public class Student {
         this.number = number;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -113,7 +102,7 @@ public class Student {
 
         Student student = (Student) o;
 
-        if (id != null ? !id.equals(student.getId()) : student.id != null) return false;
+        if (id != student.getId()) return false;
         if (Name != null ? !Name.equals(student.getName()) : student.Name != null) return false;
         if (Surname != null ? !Surname.equals(student.getSurname()) : student.Surname != null) return false;
         if (sgroup != null ? !sgroup.equals(student.getGroup()) : student.sgroup != null) return false;
@@ -125,7 +114,7 @@ public class Student {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (Name != null ? Name.hashCode() : 0);
         result = 31 * result + (Surname != null ? Surname.hashCode() : 0);
         result = 31 * result + (sgroup != null ? sgroup.hashCode() : 0);
