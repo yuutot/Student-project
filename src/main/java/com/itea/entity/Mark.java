@@ -10,10 +10,10 @@ public class Mark {
     @Column(name = "MARK_ID")
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LESSON_ID", nullable = false)//false
     private Lesson lesson;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEACHER_ID", nullable = false)//false
     private Teacher teacher;
 
@@ -25,7 +25,7 @@ public class Mark {
         this.student = student;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STUDENT_ID", nullable = false)//false
     private Student student;
     private Integer mark;

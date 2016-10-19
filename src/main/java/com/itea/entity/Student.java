@@ -11,7 +11,7 @@ public class Student {
     private long id;
     private String Name;
     private String Surname;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_ID", nullable = false)//false
     private Group sgroup;
     private Integer tickets;

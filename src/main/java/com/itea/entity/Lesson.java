@@ -11,11 +11,10 @@ public class Lesson {
     private String title;
     private String room;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_ID", nullable =false)//false
     private Group group;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEACHER_ID", nullable = false)//false
     private Teacher teacher;
 

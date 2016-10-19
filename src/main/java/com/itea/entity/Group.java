@@ -8,7 +8,7 @@ public class Group {
     @Id
     @Column(name = "GROUP_ID")
     private long Number;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEACHER_ID", nullable = false) //false
     private Teacher curator;
 
