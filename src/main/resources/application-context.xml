@@ -11,22 +11,22 @@
     http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <context:component-scan base-package=" com.itea.dao"/>
-    <tx:annotation-driven transaction-manager="txManager" />
+    <tx:annotation-driven transaction-manager="txManager"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:oracle.properties"/>
+        <property name="location" value="classpath:db.properties"/>
     </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${driver}"/>
-        <property name="url" value="${url}" />
-        <property name="username" value="${user}" />
-        <property name="password" value="${password}" />
+        <property name="url" value="${url}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${password}"/>
     </bean>
 
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
-        <property name="packagesToScan" value="com.itea.dao" />
-        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.itea.dao"/>
+        <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
         <property name="persistenceUnitName" value="student-unit"/>
         <property name="jpaProperties">
@@ -39,7 +39,7 @@
         </property>
     </bean>
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="showSql" value="true"/>

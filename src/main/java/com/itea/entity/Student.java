@@ -19,6 +19,15 @@ public class Student {
     @Column(name = "PHONE")
     private Integer number;
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
     @Override
     public String toString() {
         return "Student{" +

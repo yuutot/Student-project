@@ -1,0 +1,103 @@
+*{
+    font-family:Arial;
+}
+
+.input{
+    width: 350px;
+    float: left;
+    background: none;
+    border: none;
+    border-bottom: 1px solid darkblue;
+    margin-right: 40px;
+    height: 40px;
+
+}
+.input:focus{
+    outline: none;
+}
+
+.last{
+    float: none;
+}
+
+.links{
+    color: darkblue;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    width: 200px;
+    height: 25px;
+    border: 1px solid darkblue;
+    float: left;
+    margin-right: 40px;
+    line-height: 25px;
+    text-align: center;
+    margin-top: 20px;
+}
+.title{
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.wrap{
+    position: relative;
+}
+
+.val{
+    margin-bottom: 20px;
+}
+.title-t{
+    font-weight: 700;
+}
+.title-d{
+    float: left;
+    margin-right: 20px;
+    width:100px;
+}
+summary:focus{
+    outline: none;
+}
+details{
+    margin: 5px 0;
+}
+body{
+    position: relative;
+}
+.cert{
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    border-bottom: 1px solid black;
+    padding: 10px 0;
+    margin-bottom: 40px;
+}
+.v{
+    font-weight: 700;
+}
+
+.date{
+
+}
+.print{
+    width: 20%;
+    float: right;
+    margin-top: -70px;
+}
+
+.card{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.recv{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 400px;
+}

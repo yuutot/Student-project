@@ -3,8 +3,6 @@ package com.itea.servlet;
 import com.itea.dao.EntityDao;
 import com.itea.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.ServletConfig;
@@ -17,8 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "StudentServlet", urlPatterns = {"/student"})
-public class StudentServlet extends HttpServlet {
+@WebServlet("/createCertificate")
+public class CertificateServlet extends HttpServlet {
 
     @Autowired
     private EntityDao dao;
@@ -37,7 +35,7 @@ public class StudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        String id = req.getParameter("id");
+        String id = req.getParameter("student");
         HttpSession session = req.getSession();
         Object user = session.getAttribute("user");
         if(user instanceof Student) {
@@ -55,7 +53,7 @@ public class StudentServlet extends HttpServlet {
             out.print("Incorrectly student ID");
         } else {
             req.setAttribute("student", student);
-            req.getRequestDispatcher("/WEB-INF/jsp/dataStudent.jsp").include(req, resp);
+            req.getRequestDispatcher("/WEB-INF/jsp/certificate.jsp").include(req, resp);
         }
     }
 }

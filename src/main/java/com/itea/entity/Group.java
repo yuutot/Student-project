@@ -38,11 +38,11 @@ public class Group {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if (!(o instanceof Group)) return false;
         Group group = (Group) o;
 
         if (Number != group.getNumber()) return false;
         return curator != null ? curator.equals(group.getCurator()) : group.curator == null;
-
     }
 
     @Override

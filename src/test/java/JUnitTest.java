@@ -18,27 +18,25 @@ public class JUnitTest {
     @Test
     public void isSaveAndLoad(){
 
-        /*Teacher teacher = new Teacher();
-        teacher.setName("Maria");
-        teacher.setSurname("Ivanova");
+        Teacher teacher = new Teacher();
+        teacher.setName("Milana");
+        teacher.setSurname("Vecherkovskaya");
         teacher.setPhone("12312");
         teacher.setEmail("mail.ua");
-        teacher.setId(270);
 
         Group group = new Group();
-        group.setNumber(2);
+        group.setNumber(314);
         group.setCurator(teacher);
 
         Lesson lesson = new Lesson();
         lesson.setGroup(group);
         lesson.setRoom("6.104");
         lesson.setTeacher(teacher);
-        lesson.setTitle("Algebra");
-        lesson.setId(271);
+        lesson.setTitle("SE");
 
         Student student = new Student();
-        student.setName("Andrew");
-        student.setSurname("Petrov");
+        student.setName("Vasya");
+        student.setSurname("Pupkin");
         student.setGroup(group);
         student.setNumber(123);
         student.setEmail("ex.ua");
@@ -51,15 +49,24 @@ public class JUnitTest {
         mark.setMark(5);
         mark.setStudent(student);
 
-        //dao.insertTeacher(teacher);
-        //dao.insertGroup(group);
-        //dao.insertLesson(lesson);
+        dao.insertTeacher(teacher);
+        dao.insertGroup(group);
+        dao.insertLesson(lesson);
         dao.insertStudent(student);
         dao.insertMark(mark);
 
+        Student s = dao.findStudent(student.getId());
+        //Mark m = dao.getMarksByStudent(s.getId()).get(0);
+        Group g = dao.getAllGroups().get(0);
 
-       // Assert.assertEquals(m,mark);
-       // Assert.assertEquals(mark,m);*/
+        //Assert.assertEquals(m,mark);
+        //Assert.assertEquals(mark,m);
+
+        Assert.assertEquals(s,student);
+        Assert.assertEquals(student,s);
+
+        Assert.assertEquals(g,group);
+        Assert.assertEquals(group,g);
 
     }
 }

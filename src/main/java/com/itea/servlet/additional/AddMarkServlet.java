@@ -1,12 +1,10 @@
-package com.itea.servlet;
+package com.itea.servlet.additional;
 
 import com.itea.dao.EntityDao;
-import com.itea.entity.Group;
+import com.itea.entity.Lesson;
 import com.itea.entity.Student;
-import javafx.util.Pair;
+import com.itea.entity.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.ServletConfig;
@@ -15,13 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@WebServlet("/home")
-public class MainServlet extends HttpServlet {
+@WebServlet("/addMark")
+public class AddMarkServlet extends HttpServlet {
 
     @Autowired
     private EntityDao dao;
@@ -33,17 +30,21 @@ public class MainServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req,resp);
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        List<Group> listOfGroup = dao.getAllGroups();
-        List<List<Student>> listofStudent = listOfGroup.stream().map(group -> dao.getStudentByGroup(group.getNumber())).collect(Collectors.toList());
-        req.setAttribute("groups", listOfGroup);
-        req.setAttribute("students", listofStudent);
-        req.getRequestDispatcher("/WEB-INF/jsp/home.jsp").include(req, resp);
+        Student student =new Student();
+        try {
+            student = dao.findStudent(Integer.parseInt(req.getParameter("student")));
+        }
+        catch (NumberFormatException e){
+            req.getRequestDispatcher("error.jsp").forward(req, resp);
+        }
+        req.setAttribute("student",student);
+        HttpSession session = req.getSession();
+        Teacher user = (Teacher) session.getAttribute("user");
+        req.setAttribute("teacher", user);
+        List<Lesson> lessons = dao.getLessonsByTeacher(user.getId(), student.getGroup().getNumber());
+        req.setAttribute("lessons",lessons);
+        req.getRequestDispatcher("/WEB-INF/jsp/addMark.jsp").include(req, resp);
     }
 }

@@ -16,7 +16,7 @@ public class Teacher {
     private String Surname;
     private String Phone;
     private String Email;
-
+    private String password;
     @Override
     public String toString() {
         return "Teacher{" +
@@ -67,7 +67,13 @@ public class Teacher {
     public void setEmail(String email) {
         Email = email;
     }
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
     @Override
     public boolean equals(Object o) {
 
