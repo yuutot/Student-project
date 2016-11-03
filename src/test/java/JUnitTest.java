@@ -1,6 +1,7 @@
 import com.itea.dao.EntityDao;
 import com.itea.entity.*;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:application-context.xml")
+@ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class JUnitTest {
     @Autowired
     private EntityDao dao;
@@ -23,6 +24,7 @@ public class JUnitTest {
         teacher.setSurname("Vecherkovskaya");
         teacher.setPhone("12312");
         teacher.setEmail("mail.ua");
+        teacher.setPassword("123");
 
         Group group = new Group();
         group.setNumber(314);
@@ -41,6 +43,7 @@ public class JUnitTest {
         student.setNumber(123);
         student.setEmail("ex.ua");
         student.setTickets(33);
+        student.setPassword("123");
 
         Mark mark = new Mark();
         mark.setTeacher(teacher);
@@ -56,11 +59,17 @@ public class JUnitTest {
         dao.insertMark(mark);
 
         Student s = dao.findStudent(student.getId());
-        //Mark m = dao.getMarksByStudent(s.getId()).get(0);
+        Mark m = dao.getMarksByStudent(s.getId(), lesson.getId()).get(0);
         Group g = dao.getAllGroups().get(0);
+        Lesson l = dao.getLessonsByGroup(g.getNumber()).get(0);
+        Teacher t = dao.findTeacher(teacher.getId());
+        Student sp = dao.getStudentByPassword(student.getEmail(),student.getPassword());
+        Teacher tp = dao.getTeacherByPassword(teacher.getEmail(),teacher.getPassword());
+        Lesson lt = dao.getLessonsByTeacher(t.getId(),g.getNumber()).get(0);
+        Group gr = dao.getAllGroups().get(0);
 
-        //Assert.assertEquals(m,mark);
-        //Assert.assertEquals(mark,m);
+        Assert.assertEquals(m,mark);
+        Assert.assertEquals(mark,m);
 
         Assert.assertEquals(s,student);
         Assert.assertEquals(student,s);
@@ -68,5 +77,22 @@ public class JUnitTest {
         Assert.assertEquals(g,group);
         Assert.assertEquals(group,g);
 
+        Assert.assertEquals(l,lesson);
+        Assert.assertEquals(lesson,l);
+
+        Assert.assertEquals(t,teacher);
+        Assert.assertEquals(teacher,t);
+
+        Assert.assertEquals(tp,teacher);
+        Assert.assertEquals(teacher,tp);
+
+        Assert.assertEquals(sp,student);
+        Assert.assertEquals(student, sp);
+
+        Assert.assertEquals(lt,lesson);
+        Assert.assertEquals(lesson,lt);
+
+        Assert.assertEquals(gr,group);
+        Assert.assertEquals(group,gr);
     }
 }

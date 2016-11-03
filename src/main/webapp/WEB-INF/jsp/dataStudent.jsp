@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.itea.entity.Teacher" %>
 <%@ page import="com.itea.entity.Student" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Student: ${student.getSurname()} ${student.getName()}</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
 </head>
 <body>
 <div style="clear: both"></div>

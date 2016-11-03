@@ -22,8 +22,8 @@ public class AuthFilter implements Filter {
             if (user == null) {
                 servletRequest.getRequestDispatcher("/auth").forward(servletRequest, servletResponse);
             }else{
-                if(!(user instanceof Teacher) && path.contains("add")){
-                    servletRequest.getRequestDispatcher("/error.jsp").forward(servletRequest,servletResponse);
+                if(!(user instanceof Teacher) && (path.contains("add")||path.contains("home"))){
+                    servletRequest.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(servletRequest,servletResponse);
                 } else {
                     filterChain.doFilter(servletRequest, servletResponse);
                 }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = {"StudentServlet"})
+@WebFilter("/student")
 public class StudentFilter implements Filter {
 
     @Override

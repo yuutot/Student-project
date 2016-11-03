@@ -1,49 +1,40 @@
-package com.itea.servlet;
+package com.itea.controllers;
 
 import com.itea.dao.EntityDao;
 import com.itea.entity.Lesson;
 import com.itea.entity.Mark;
 import com.itea.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/showMark")
-public class ShowMarkServlet extends HttpServlet {
+@Controller
+public class ShowMarkController {
 
     @Autowired
     private EntityDao dao;
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String studentId = req.getParameter("student");
+    @RequestMapping(value = "/showMark", method = RequestMethod.GET)
+    public String createCertificate(@RequestParam(value = "student", required = false) String studentId, HttpServletRequest req, Model model){
         HttpSession session = req.getSession();
         Object user = session.getAttribute("user");
         if (user instanceof Student){
             studentId = String.valueOf(((Student) user).getId());
         }
-        Student student =new Student();
+        Student student;
         try {
             student = dao.findStudent(Integer.parseInt(studentId));
         }
         catch (NumberFormatException e){
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return "error";
         }
         List<Lesson> lessons = dao.getLessonsByGroup(student.getGroup().getNumber());
         List<List<Mark>> marks = new ArrayList<>();
@@ -65,14 +56,14 @@ public class ShowMarkServlet extends HttpServlet {
             marks.add(markList);
         }
         avgMarkForAll = avgMarkForAll/count;
-        req.setAttribute("lessons", lessons);
-        req.setAttribute("student", student);
-        req.setAttribute("marks", marks);
-        req.setAttribute("avg", avgMark);
-        req.setAttribute("avgMark", avgMarkForAll);
-        req.getRequestDispatcher("/WEB-INF/jsp/showMark.jsp").include(req, resp);
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("student", student);
+        model.addAttribute("marks", marks);
+        model.addAttribute("avg", avgMark);
+        model.addAttribute("avgMark", avgMarkForAll);
+        return "showMark";
     }
-    double toSystem(double f){
+    private double toSystem(double f){
         if(f < 2.5) return 0;
         else if(f < 3.5) return 60+(f-2.5)*15;
         else if(f < 4.5) return 75+(f-3.5)*15;

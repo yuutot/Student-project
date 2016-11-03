@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Main page</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
 </head>
 <body>
 <a class="links" href="addGroup">Add Group</a>

@@ -15,7 +15,7 @@ public class Teacher {
     private String Name;
     private String Surname;
     private String Phone;
-    private String Email;
+    private String email;
     private String password;
     @Override
     public String toString() {
@@ -24,7 +24,7 @@ public class Teacher {
                 ", Name='" + Name + '\'' +
                 ", Surname='" + Surname + '\'' +
                 ", Phone='" + Phone + '\'' +
-                ", Email='" + Email + '\'' +
+                ", Email='" + email + '\'' +
                 '}';
     }
 
@@ -61,11 +61,11 @@ public class Teacher {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
     public String getPassword() {
         return password;
@@ -85,7 +85,7 @@ public class Teacher {
         if (Name != null ? !Name.equals(teacher.getName()) : teacher.Name != null) return false;
         if (Surname != null ? !Surname.equals(teacher.getSurname()) : teacher.Surname != null) return false;
         if (Phone != null ? !Phone.equals(teacher.getPhone()) : teacher.Phone != null) return false;
-        return Email != null ? Email.equals(teacher.getEmail()) : teacher.Email == null;
+        return email != null ? email.equals(teacher.getEmail()) : teacher.email == null;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Teacher {
         result = 31 * result + (Name != null ? Name.hashCode() : 0);
         result = 31 * result + (Surname != null ? Surname.hashCode() : 0);
         result = 31 * result + (Phone != null ? Phone.hashCode() : 0);
-        result = 31 * result + (Email != null ? Email.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }
 }

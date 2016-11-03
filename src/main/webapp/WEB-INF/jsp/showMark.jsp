@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Show Mark</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
 </head>
 <body>
 <p>Show mark for <span class="title-t"> ${student.getName()} ${student.getSurname()} </span>Avg: ${avgMark}<p>
