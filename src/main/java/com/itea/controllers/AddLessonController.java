@@ -20,7 +20,7 @@ public class AddLessonController {
     private EntityDao dao;
 
     @RequestMapping(value = "/addLesson", method = RequestMethod.GET)
-    public String addGroup(Model model){
+    public String addLesson(Model model){
         List<Group> listOfGroup = dao.getAllGroups();
         model.addAttribute("groups", listOfGroup);
         List<Teacher> teachers = dao.getAllTeachers();
@@ -29,7 +29,7 @@ public class AddLessonController {
     }
 
     @RequestMapping(value = "/handlerAddLesson", method = RequestMethod.POST)
-    public String addGroupHandler(@RequestParam(value = "LessonTitle") String title,
+    public String addLessonHandler(@RequestParam(value = "LessonTitle") String title,
                                   @RequestParam(value = "LessonRoom") String room,
                                   @RequestParam(value = "teacher") String teach,
                                   @RequestParam(value = "group") String gr){

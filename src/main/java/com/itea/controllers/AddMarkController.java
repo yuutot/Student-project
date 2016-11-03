@@ -40,7 +40,7 @@ public class AddMarkController {
     }
 
     @RequestMapping(value = "/handlerAddMark", method = RequestMethod.POST)
-    public String addGroupHandler(@RequestParam(value = "idStudent") String id,
+    public String addMarkHandler(@RequestParam(value = "idStudent") String id,
                                   @RequestParam(value = "lesson") String less,
                                   @RequestParam(value = "teacher") String teach,
                                   @RequestParam(value = "Mark") String rMark,

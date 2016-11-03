@@ -15,12 +15,12 @@ public class AddTeacherController {
     private EntityDao dao;
 
     @RequestMapping(value = "/addTeacher", method = RequestMethod.GET)
-    public String addMark(){
+    public String addTeacher(){
         return "addTeacher";
     }
 
     @RequestMapping(value = "/handlerAddTeacher", method = RequestMethod.POST)
-    public String addGroupHandler(@RequestParam(value = "TeacherName") String name,
+    public String addTeacherHandler(@RequestParam(value = "TeacherName") String name,
                                   @RequestParam(value = "TeacherSurname") String surname,
                                   @RequestParam(value = "TeacherPhone") String phone,
                                   @RequestParam(value = "TeacherEmail") String email,

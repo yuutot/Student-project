@@ -19,14 +19,14 @@ public class AddStudentController {
     private EntityDao dao;
 
     @RequestMapping(value = "/addStudent", method = RequestMethod.GET)
-    public String addMark(Model model){
+    public String addStudent(Model model){
         List<Group> listOfGroup = dao.getAllGroups();
         model.addAttribute("groups", listOfGroup);
         return "addStudent";
     }
 
     @RequestMapping(value = "/handlerAddStudent", method = RequestMethod.POST)
-    public String addGroupHandler(@RequestParam(value = "StudentName") String name,
+    public String addStudentHandler(@RequestParam(value = "StudentName") String name,
                                   @RequestParam(value = "StudentSurname") String surname,
                                   @RequestParam(value = "StudentPhone") String stPhone,
                                   @RequestParam(value = "StudentEmail") String email,
