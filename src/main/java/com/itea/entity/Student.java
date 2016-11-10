@@ -3,37 +3,25 @@ package com.itea.entity;
 import javax.persistence.*;
 
 @Entity
-public class Student {
-
-    @Id
-    @GeneratedValue
-    @Column(name = "STUDENT_ID")
-    private long id;
-    private String Name;
-    private String Surname;
+public class Student extends User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_ID", nullable = false)//false
     private Group sgroup;
     private Integer tickets;
-    private String email;
     @Column(name = "PHONE")
     private Integer number;
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
-    private String password;
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
-                ", Surname='" + Surname + '\'' +
+                ", Name='" + name + '\'' +
+                ", Surname='" + surname + '\'' +
                 ", group=" + sgroup +
                 ", tickets=" + tickets +
                 ", email='" + email + '\'' +
@@ -82,19 +70,19 @@ public class Student {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getSurname() {
-        return Surname;
+        return surname;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.surname = surname;
     }
 
     public Group getSgroup() {
@@ -112,8 +100,8 @@ public class Student {
         Student student = (Student) o;
 
         if (id != student.getId()) return false;
-        if (Name != null ? !Name.equals(student.getName()) : student.Name != null) return false;
-        if (Surname != null ? !Surname.equals(student.getSurname()) : student.Surname != null) return false;
+        if (name != null ? !name.equals(student.getName()) : student.name != null) return false;
+        if (surname != null ? !surname.equals(student.getSurname()) : student.surname != null) return false;
         if (sgroup != null ? !sgroup.equals(student.getGroup()) : student.sgroup != null) return false;
         if (tickets != null ? !tickets.equals(student.getTickets()) : student.tickets != null) return false;
         if (email != null ? !email.equals(student.getEmail()) : student.email != null) return false;
@@ -124,8 +112,8 @@ public class Student {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (Name != null ? Name.hashCode() : 0);
-        result = 31 * result + (Surname != null ? Surname.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (sgroup != null ? sgroup.hashCode() : 0);
         result = 31 * result + (tickets != null ? tickets.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);

@@ -65,6 +65,7 @@ public class EntityDaoImpl implements EntityDao {
     public void insertTeacher(Teacher teacher) {
         em.persist(teacher);
         em.close();
+        em.createQuery("update User set ROLE = 'ROLE_ADMIN' where USER_ID = "+teacher.getId()).executeUpdate();
     }
 
     public void insertGroup(Group group) {

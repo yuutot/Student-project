@@ -13,6 +13,7 @@ import java.util.Random;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
+@Ignore
 public class JUnitTest {
     @Autowired
     private EntityDao dao;
